@@ -1,0 +1,40 @@
+syntax = "proto3";
+package grpc_service;
+import "google/protobuf/wrappers.proto";
+
+service kent {
+    rpc book(BookingDetails) returns (BookingId);
+    rpc deposit(DepositDetails) returns (Confirmation);
+}
+
+message Date {
+    int32 day = 1;
+    int32 month = 2;
+    int32 year = 3;
+}
+
+message Time {
+    int32 hour = 1;
+    int32 min = 2;
+}
+
+message BookingDetails {
+    Date date = 1;
+    Time time = 2;
+    int32 gests = 3;
+    int32 duration = 4;
+}
+
+message BookingId {
+    string bookigId = 1;
+    BookingDetails bd = 2;
+}
+
+message DepositDetails{
+    BookingId id = 1;
+    float money = 2;
+}
+
+message Confirmation {
+    bool confirmed = 1;
+}
